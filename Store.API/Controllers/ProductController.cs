@@ -18,39 +18,65 @@ namespace Store.API.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Product> Get()
+        public IActionResult Get()
         {
-            return _productRepository.GetProducts();
+            return Ok(_productRepository.GetProducts());
         }
 
         [HttpGet("{id}")]
-        public Product Get(long id)
+        public IActionResult Get(long id)
         {
-            return _productRepository.GetProductById(id);
+
+            Product product = _productRepository.GetProductById(id);
+            return product == null ? NoContent() : Ok(product);
         }
 
         [HttpGet("search")]
-        public IEnumerable<Product> GetByDescription([FromQuery]string q)
+        public IActionResult GetByDescription([FromQuery]string q)
         {
-            return _productRepository.GetByDescription(q);
+            return Ok(_productRepository.GetByDescription(q));
         }
 
         [HttpPost]
-        public void Post([FromBody] Product product)
+        public IActionResult Add([FromBody] Product product)
         {
-            _productRepository.AddProduct(product);
+            try
+            {
+                _productRepository.AddProduct(product);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Product editedProduct)
+        public IActionResult Update(int id, [FromBody] Product editedProduct)
         {
-            _productRepository.UpdateProduct(id, editedProduct);
+            try
+            {
+                _productRepository.UpdateProduct(id, editedProduct);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
-            _productRepository.DeleteProduct(id);
+            try
+            {
+                _productRepository.DeleteProduct(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
     }
 }
