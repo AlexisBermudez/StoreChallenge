@@ -1,3 +1,9 @@
+C:\Users\DELL\Documents\Challenge\Store.API\Store.API\obj\Debug\net6.0\Store.API.csproj.AssemblyReference.cache
+C:\Users\DELL\Documents\Challenge\Store.API\Store.API\obj\Debug\net6.0\Store.API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DELL\Documents\Challenge\Store.API\Store.API\obj\Debug\net6.0\Store.API.AssemblyInfoInputs.cache
+C:\Users\DELL\Documents\Challenge\Store.API\Store.API\obj\Debug\net6.0\Store.API.AssemblyInfo.cs
+C:\Users\DELL\Documents\Challenge\Store.API\Store.API\obj\Debug\net6.0\Store.API.csproj.CoreCompileInputs.cache
+C:\Users\DELL\Documents\Challenge\Store.API\Store.API\obj\Debug\net6.0\Store.API.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\DELL\Documents\Challenge\Store.API\Store.API\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\DELL\Documents\Challenge\Store.API\Store.API\bin\Debug\net6.0\appsettings.json
 C:\Users\DELL\Documents\Challenge\Store.API\Store.API\bin\Debug\net6.0\Store.API.exe
@@ -5,6 +11,8 @@ C:\Users\DELL\Documents\Challenge\Store.API\Store.API\bin\Debug\net6.0\Store.API
 C:\Users\DELL\Documents\Challenge\Store.API\Store.API\bin\Debug\net6.0\Store.API.runtimeconfig.json
 C:\Users\DELL\Documents\Challenge\Store.API\Store.API\bin\Debug\net6.0\Store.API.dll
 C:\Users\DELL\Documents\Challenge\Store.API\Store.API\bin\Debug\net6.0\Store.API.pdb
+C:\Users\DELL\Documents\Challenge\Store.API\Store.API\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\DELL\Documents\Challenge\Store.API\Store.API\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\DELL\Documents\Challenge\Store.API\Store.API\bin\Debug\net6.0\Azure.Core.dll
 C:\Users\DELL\Documents\Challenge\Store.API\Store.API\bin\Debug\net6.0\Azure.Identity.dll
 C:\Users\DELL\Documents\Challenge\Store.API\Store.API\bin\Debug\net6.0\Humanizer.dll
@@ -60,12 +68,6 @@ C:\Users\DELL\Documents\Challenge\Store.API\Store.API\bin\Debug\net6.0\runtimes\
 C:\Users\DELL\Documents\Challenge\Store.API\Store.API\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\DELL\Documents\Challenge\Store.API\Store.API\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
 C:\Users\DELL\Documents\Challenge\Store.API\Store.API\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
-C:\Users\DELL\Documents\Challenge\Store.API\Store.API\obj\Debug\net6.0\Store.API.csproj.AssemblyReference.cache
-C:\Users\DELL\Documents\Challenge\Store.API\Store.API\obj\Debug\net6.0\Store.API.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\DELL\Documents\Challenge\Store.API\Store.API\obj\Debug\net6.0\Store.API.AssemblyInfoInputs.cache
-C:\Users\DELL\Documents\Challenge\Store.API\Store.API\obj\Debug\net6.0\Store.API.AssemblyInfo.cs
-C:\Users\DELL\Documents\Challenge\Store.API\Store.API\obj\Debug\net6.0\Store.API.csproj.CoreCompileInputs.cache
-C:\Users\DELL\Documents\Challenge\Store.API\Store.API\obj\Debug\net6.0\Store.API.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\DELL\Documents\Challenge\Store.API\Store.API\obj\Debug\net6.0\staticwebassets\msbuild.Store.API.Microsoft.AspNetCore.StaticWebAssets.props
 C:\Users\DELL\Documents\Challenge\Store.API\Store.API\obj\Debug\net6.0\staticwebassets\msbuild.build.Store.API.props
 C:\Users\DELL\Documents\Challenge\Store.API\Store.API\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.Store.API.props

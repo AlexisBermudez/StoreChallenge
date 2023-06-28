@@ -12,8 +12,8 @@ using Store.API.Context;
 namespace Store.API.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    [Migration("20230622132613_Created_product_model")]
-    partial class Created_product_model
+    [Migration("20230627143745_ProductEntityAndSampleData")]
+    partial class ProductEntityAndSampleData
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace Store.API.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Store.API.Models.Product", b =>
+            modelBuilder.Entity("Store.API.Entities.Product", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -35,7 +35,8 @@ namespace Store.API.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime>("PurchaseDate")
                         .HasColumnType("datetime2");
@@ -52,6 +53,35 @@ namespace Store.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Description = "Terrain in Medellín",
+                            PurchaseDate = new DateTime(2023, 6, 27, 9, 37, 45, 799, DateTimeKind.Local).AddTicks(5399),
+                            Status = false,
+                            Type = 2,
+                            Value = 60000000L
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            Description = "Libero 125cc",
+                            PurchaseDate = new DateTime(2023, 6, 27, 9, 37, 45, 799, DateTimeKind.Local).AddTicks(5410),
+                            Status = false,
+                            Type = 1,
+                            Value = 4000000L
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            Description = "Aparment in Itagüí",
+                            PurchaseDate = new DateTime(2023, 6, 27, 9, 37, 45, 799, DateTimeKind.Local).AddTicks(5411),
+                            Status = false,
+                            Type = 3,
+                            Value = 59000000L
+                        });
                 });
 #pragma warning restore 612, 618
         }

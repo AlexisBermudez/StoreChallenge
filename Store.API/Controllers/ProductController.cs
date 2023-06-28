@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using Store.API.Entities;
 using Store.API.Models;
 using Store.API.Repository;
 
@@ -10,39 +12,41 @@ namespace Store.API.Controllers
     [Route("api/[controller]")]
     public class ProductController : ControllerBase
     {
-        private ProductRepository _productRepository;
+        private IProductRepository _productRepository;
+        private readonly IMapper _mapper;
 
-        public ProductController(ProductRepository productService)
+        public ProductController(IProductRepository productService, IMapper mapper)
         {
             _productRepository = productService ?? throw new ArgumentNullException(nameof(productService));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_productRepository.GetProducts());
+            return Ok(_mapper.Map<IEnumerable<ProductDto>>(_productRepository.GetProducts()));
         }
 
         [HttpGet("{id}")]
         public IActionResult Get(long id)
         {
 
-            Product product = _productRepository.GetProductById(id);
+            ProductDto product = _mapper.Map<ProductDto>(_productRepository.GetProductById(id));
             return product == null ? NoContent() : Ok(product);
         }
 
         [HttpGet("search")]
         public IActionResult GetByDescription([FromQuery]string q)
         {
-            return Ok(_productRepository.GetByDescription(q));
+            return Ok(_mapper.Map<IEnumerable<ProductDto>>(_productRepository.GetByDescription(q)));
         }
 
         [HttpPost]
-        public IActionResult Add([FromBody] Product product)
+        public IActionResult Add([FromBody] ProductDto product)
         {
             try
             {
-                _productRepository.AddProduct(product);
+                _productRepository.AddProduct(_mapper.Map<Product>(product));
                 return Ok();
             }
             catch (Exception ex)
@@ -52,11 +56,11 @@ namespace Store.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Update(int id, [FromBody] Product editedProduct)
+        public IActionResult Update(int id, [FromBody] ProductDto editedProduct)
         {
             try
             {
-                _productRepository.UpdateProduct(id, editedProduct);
+                _productRepository.UpdateProduct(id, _mapper.Map<Product>(editedProduct));
                 return Ok();
             }
             catch (Exception ex)

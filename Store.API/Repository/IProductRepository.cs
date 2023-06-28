@@ -1,5 +1,5 @@
 ﻿using Store.API.Context;
-using Store.API.Models;
+using Store.API.Entities;
 
 namespace Store.API.Repository
 {

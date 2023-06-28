@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Store.API.Models
 {
-    public class Product
+    public class ProductDto
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
