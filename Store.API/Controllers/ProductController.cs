@@ -13,7 +13,7 @@ namespace Store.API.Controllers
     [Route("api/[controller]")]
     public class ProductController : ControllerBase
     {
-        private IProductService _productService;
+        private readonly IProductService _productService;
         private readonly IMapper _mapper;
 
         public ProductController(IProductService productService, IMapper mapper)

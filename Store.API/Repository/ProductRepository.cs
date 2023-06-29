@@ -5,7 +5,7 @@ namespace Store.API.Repository
 {
     public class ProductRepository : IProductRepository
     {
-        private StoreContext _storeContext;
+        private readonly StoreContext _storeContext;
 
         public ProductRepository(StoreContext storeContext)
         {
