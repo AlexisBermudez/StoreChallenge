@@ -27,10 +27,11 @@ namespace Store.API.Repository
             return _storeContext.Products.Where(p => p.Description.Contains(query));
         }
 
-        public void AddProduct(Product product)
+        public Product AddProduct(Product product)
         {
-            _storeContext.Products.Add(product);
+            Product created = _storeContext.Products.Add(product).Entity;
             _storeContext.SaveChanges();
+            return created;
         }
 
         public void UpdateProduct(long id, Product editedProduct)
@@ -39,7 +40,7 @@ namespace Store.API.Repository
             var product = _storeContext.Products.FirstOrDefault(p => p.Id == id);
             if (product != null)
             {
-                _storeContext.Entry<Product>(product).CurrentValues.SetValues(editedProduct);
+                _storeContext.Entry(product).CurrentValues.SetValues(editedProduct);
                 _storeContext.SaveChanges();
             }
         }

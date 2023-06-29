@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Store.API.Context;
 using Store.API.Profiles;
 using Store.API.Repository;
+using Store.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,8 @@ builder.Services.AddDbContext<StoreContext>(options =>
 });
 
 builder.Services.AddTransient<IProductRepository, ProductRepository>();
+
+builder.Services.AddTransient<IProductService, ProductService>();
 
 builder.Services.AddAutoMapper(typeof(StoreProfile));
 

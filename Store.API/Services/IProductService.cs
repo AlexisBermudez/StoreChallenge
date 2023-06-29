@@ -1,9 +1,8 @@
-﻿using Store.API.Context;
-using Store.API.Entities;
+﻿using Store.API.Entities;
 
-namespace Store.API.Repository
+namespace Store.API.Services
 {
-    public interface IProductRepository
+    public interface IProductService
     {
         public IEnumerable<Product> GetProducts();
         public Product GetProductById(long id);

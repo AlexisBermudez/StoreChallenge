@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Store.API.Entities;
 using Store.API.Models;
 using Store.API.Repository;
+using Store.API.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,33 +13,33 @@ namespace Store.API.Controllers
     [Route("api/[controller]")]
     public class ProductController : ControllerBase
     {
-        private IProductRepository _productRepository;
+        private IProductService _productService;
         private readonly IMapper _mapper;
 
-        public ProductController(IProductRepository productService, IMapper mapper)
+        public ProductController(IProductService productService, IMapper mapper)
         {
-            _productRepository = productService ?? throw new ArgumentNullException(nameof(productService));
+            _productService = productService ?? throw new ArgumentNullException(nameof(productService));
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_mapper.Map<IEnumerable<ProductDto>>(_productRepository.GetProducts()));
+            return Ok(_mapper.Map<IEnumerable<ProductDto>>(_productService.GetProducts()));
         }
 
         [HttpGet("{id}")]
         public IActionResult Get(long id)
         {
 
-            ProductDto product = _mapper.Map<ProductDto>(_productRepository.GetProductById(id));
+            ProductDto product = _mapper.Map<ProductDto>(_productService.GetProductById(id));
             return product == null ? NoContent() : Ok(product);
         }
 
         [HttpGet("search")]
         public IActionResult GetByDescription([FromQuery]string q)
         {
-            return Ok(_mapper.Map<IEnumerable<ProductDto>>(_productRepository.GetByDescription(q)));
+            return Ok(_mapper.Map<IEnumerable<ProductDto>>(_productService.GetByDescription(q)));
         }
 
         [HttpPost]
@@ -46,8 +47,9 @@ namespace Store.API.Controllers
         {
             try
             {
-                _productRepository.AddProduct(_mapper.Map<Product>(product));
-                return Ok();
+                ProductDto created = _mapper.Map<ProductDto>(_productService.AddProduct(_mapper.Map<Product>(product)));
+                string locationUri = $"{Request.Host}/api/product/{created.Id}";
+                return Created(locationUri, created);
             }
             catch (Exception ex)
             {
@@ -60,7 +62,7 @@ namespace Store.API.Controllers
         {
             try
             {
-                _productRepository.UpdateProduct(id, _mapper.Map<Product>(editedProduct));
+                _productService.UpdateProduct(id, _mapper.Map<Product>(editedProduct));
                 return Ok();
             }
             catch (Exception ex)
@@ -74,7 +76,7 @@ namespace Store.API.Controllers
         {
             try
             {
-                _productRepository.DeleteProduct(id);
+                _productService.DeleteProduct(id);
                 return Ok();
             }
             catch (Exception ex)

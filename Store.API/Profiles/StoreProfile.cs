@@ -8,8 +8,7 @@ namespace Store.API.Profiles
     {
         public StoreProfile() 
         { 
-            CreateMap<Product, ProductDto>();
-            CreateMap<ProductDto, Product>();
+            CreateMap<Product, ProductDto>().ReverseMap();
         }
     }
 }
