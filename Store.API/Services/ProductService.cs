@@ -9,17 +9,12 @@ namespace Store.API.Services
 
         public ProductService(IProductRepository repository)
         {
-            _repository = repository;
+            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
         public Product AddProduct(Product product)
         {
             return _repository.AddProduct(product);
-        }
-
-        public void DeleteProduct(long id)
-        {
-            _repository.DeleteProduct(id);
         }
 
         public IEnumerable<Product> GetByDescription(string query)
@@ -37,9 +32,14 @@ namespace Store.API.Services
             return _repository.GetProducts();
         }
 
-        public void UpdateProduct(long id, Product editedProduct)
+        public bool UpdateProduct(long id, Product editedProduct)
         {
-            _repository.UpdateProduct(id, editedProduct);
+            return _repository.UpdateProduct(id, editedProduct);
+        }
+
+        public bool DeleteProduct(long id)
+        {
+            return _repository.DeleteProduct(id);
         }
     }
 }

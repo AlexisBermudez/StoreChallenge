@@ -1,5 +1,4 @@
-﻿using Store.API.Context;
-using Store.API.Entities;
+﻿using Store.API.Entities;
 
 namespace Store.API.Repository
 {
@@ -9,7 +8,7 @@ namespace Store.API.Repository
 
         public ProductRepository(StoreContext storeContext)
         {
-            _storeContext = storeContext;
+            _storeContext = storeContext ?? throw new ArgumentNullException(nameof(storeContext));
         }
 
         public IEnumerable<Product> GetProducts()
@@ -34,7 +33,7 @@ namespace Store.API.Repository
             return created;
         }
 
-        public void UpdateProduct(long id, Product editedProduct)
+        public bool UpdateProduct(long id, Product editedProduct)
         {
             editedProduct.Id = id;
             var product = _storeContext.Products.FirstOrDefault(p => p.Id == id);
@@ -42,17 +41,21 @@ namespace Store.API.Repository
             {
                 _storeContext.Entry(product).CurrentValues.SetValues(editedProduct);
                 _storeContext.SaveChanges();
+                return true;
             }
+            return false;
         }
 
-        public void DeleteProduct(long id)
+        public bool DeleteProduct(long id)
         {
             var product = _storeContext.Products.FirstOrDefault(p => p.Id == id);
             if (product != null)
             {
-                _storeContext.Products.Remove(product);
+                Product removed = _storeContext.Products.Remove(product).Entity;
                 _storeContext.SaveChanges();
+                return true;
             }
+            return false;
         }
     }
 }

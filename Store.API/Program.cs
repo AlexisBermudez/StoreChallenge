@@ -1,7 +1,5 @@
-using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using Store.API.Context;
-using Store.API.Profiles;
+using Store.API;
 using Store.API.Repository;
 using Store.API.Services;
 
@@ -14,9 +12,9 @@ builder.Services.AddDbContext<StoreContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("StoreChallenge"));
 });
 
-builder.Services.AddTransient<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
-builder.Services.AddTransient<IProductService, ProductService>();
+builder.Services.AddScoped<IProductService, ProductService>();
 
 builder.Services.AddAutoMapper(typeof(StoreProfile));
 

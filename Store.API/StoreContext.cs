@@ -1,13 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Store.API.Entities;
 
-namespace Store.API.Context
+namespace Store.API
 {
     public class StoreContext : DbContext
     {
         public StoreContext(DbContextOptions options) : base(options)
         {
-            
+
         }
 
         public DbSet<Product> Products { get; set; }
@@ -16,7 +16,8 @@ namespace Store.API.Context
         {
             modelBuilder.Entity<Product>().HasData(
                     new Product
-                    {   Id = 1,
+                    {
+                        Id = 1,
                         Description = "Terrain in Medellín",
                         Type = ProductType.Terrains,
                         Value = 60000000,

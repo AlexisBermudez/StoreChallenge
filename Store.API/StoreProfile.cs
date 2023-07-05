@@ -2,12 +2,12 @@
 using Store.API.Entities;
 using Store.API.Models;
 
-namespace Store.API.Profiles
+namespace Store.API
 {
     public class StoreProfile : Profile
     {
-        public StoreProfile() 
-        { 
+        public StoreProfile()
+        {
             CreateMap<Product, ProductDto>().ReverseMap();
         }
     }
